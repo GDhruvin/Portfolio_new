@@ -180,7 +180,7 @@ export default function Home() {
               handle="dhruvin_gabani"
               status="Online"
               contactText="Contact Me"
-              avatarUrl="/assets/profile_pic2.png"
+              avatarUrl="/assets/profile_pic.png"
               showUserInfo={true}
               enableTilt={true}
               onContactClick={() => scrollToSection("contact")}
