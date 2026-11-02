@@ -47,7 +47,7 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [projectFilter, setProjectFilter] = useState<
-    "all" | "saas" | "healthcare" | "mobile"
+    "all" | "fintech" | "saas" | "healthcare" | "mobile"
   >("all");
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
@@ -142,6 +142,46 @@ export default function Home() {
         "Next.js App Router & React 19",
         "Automated Task Worker",
         "Vitest & Playwright Tests",
+      ],
+    },
+    {
+      id: "ledger-pro",
+      title: "Ledger Pro",
+      subtitle: "Enterprise Trading Back-Office & Settlement Platform",
+      category: "fintech",
+      role: "Full-Stack Architecture & SDE",
+      badge: "Fintech & Capital Markets (NSE/MCX)",
+      image: "/assets/ledger-pro.png",
+      summary:
+        "Enterprise-grade multi-tier Trading Back-Office, Risk Management (RMS), and Financial Settlement Platform built for capital market brokers and traders operating across Indian exchanges (NSE Equity, NSE F&O, and MCX Commodities).",
+      bullets: [
+        "Architected and built an enterprise-scale Trading Back-Office and Clearing application using React 19, TypeScript, Redux Toolkit, and Material UI.",
+        "Engineered a real-time Risk Management (RMS) dashboard tracking Mark-to-Market (MTM) calculations, live bid/ask spreads, and open positions across NSE Equity, NSE F&O, and MCX.",
+        "Implemented end-to-end client-side AES-256-CBC payload encryption and JWT authentication to satisfy strict financial industry security standards.",
+        "Built an automated settlement billing engine supporting Bhav Copy market data ingestion, dynamic brokerage commission formulas, and contract note exports (PDF/Excel).",
+        "Designed an AbortController-driven HTTP client with automated query deduplication, reducing redundant network requests and preventing asynchronous state races.",
+        "Implemented a 5-tier hierarchical RBAC system governing SuperAdmins, Sub-Brokers, and Clients with granular permissions across 30+ operational modules.",
+      ],
+      tech: [
+        "React 19",
+        "TypeScript 5.9",
+        "Redux Toolkit",
+        "Material-UI (MUI)",
+        "Recharts",
+        "CryptoJS (AES-256-CBC)",
+        "React Hook Form",
+        "Zod",
+        "Bhav Copy Engine",
+        "Double-Entry Ledger",
+        "PDF/Excel Export",
+        "Docker",
+        "Nginx",
+      ],
+      highlights: [
+        "Real-Time RMS & MTM Engine",
+        "AES-256-CBC Payload Encryption",
+        "5-Tier Hierarchical RBAC",
+        "Automated Bhav Copy Settlement",
       ],
     },
     {
@@ -282,7 +322,11 @@ export default function Home() {
   const filteredProjects =
     projectFilter === "all"
       ? projects
-      : projects.filter((p) => p.category === projectFilter);
+      : projects.filter(
+          (p) =>
+            p.category === projectFilter ||
+            (projectFilter === "saas" && p.category === "fintech")
+        );
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 theme-transition selection:bg-blue-500 selection:text-white">
@@ -471,10 +515,10 @@ export default function Home() {
                   </div>
                   <div className="space-y-1">
                     <div className="text-2xl sm:text-3xl font-extrabold text-blue-600 dark:text-blue-400">
-                      5+
+                      6+
                     </div>
                     <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                      Production SaaS & Apps
+                      Production Platforms
                     </div>
                   </div>
                   <div className="space-y-1">
@@ -1056,7 +1100,8 @@ export default function Home() {
           {/* Category Filter Pills */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {[
-              { id: "all", label: "All Projects (5)" },
+              { id: "all", label: "All Projects (6)" },
+              { id: "fintech", label: "Fintech & Trading" },
               { id: "saas", label: "B2B SaaS & Multi-Tenant" },
               { id: "healthcare", label: "Healthcare & DICOM" },
               { id: "mobile", label: "Mobile Apps (React Native)" },
@@ -1124,6 +1169,18 @@ export default function Home() {
                           ))}
                         </div>
                       </div>
+
+                      {project.image && (
+                        <div className="pt-3">
+                          <div className="rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900 shadow-sm">
+                            <img
+                              src={project.image}
+                              alt={`${project.title} screenshot`}
+                              className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Live link if available */}
@@ -1361,6 +1418,9 @@ export default function Home() {
                     "CornerstoneJS (DICOM)",
                     "WebAssembly (Wasm)",
                     "HTML5 Canvas",
+                    "AES-256-CBC Encryption",
+                    "RMS & MTM Calculations",
+                    "Bhav Copy Settlement",
                     "Stripe Subscription Billing",
                     "Microsoft Entra ID (SSO)",
                     "Subdomain Tenant Routing",
@@ -1799,6 +1859,7 @@ export default function Home() {
                             Project Type / Scope
                           </label>
                           <select className="w-full h-10 px-3 bg-slate-900 border border-slate-700 rounded-md text-sm text-white focus:outline-none focus:border-blue-500">
+                            <option>Fintech / Trading Back-Office Platform</option>
                             <option>B2B SaaS / Web Platform</option>
                             <option>React Native Mobile App</option>
                             <option>Healthcare & HIPAA Platform</option>
