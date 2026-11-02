@@ -1,6 +1,19 @@
 [build]
   command = "npm install --force && npm run build"
-  publish = ".next"
+  publish = "out"
 
 [build.environment]
   NPM_FLAGS = "--force"
+
+[[headers]]
+  for = "/Dhruvin_Gabani_Resume.pdf"
+  [headers.values]
+    Content-Disposition = "inline; filename=\"Dhruvin_Gabani_Resume.pdf\""
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
